@@ -4,11 +4,9 @@ document.addEventListener('click', eventFiredFromHover)
 
 var addNodeOnHover = []
 var clickedElement = null
-var listenerAdded = false
 
 function eventFiredFromHover (e) {
   clickedElement = e.target
-  console.log('click', addNodeOnHover)
   var found = false
   for (var i = 0; i < addNodeOnHover.length; i++) {
     if (addNodeOnHover[0] === clickedElement) {
@@ -16,13 +14,11 @@ function eventFiredFromHover (e) {
       alert('run your callback')
     }
   }
-  if (!found && !listenerAdded) {
+  if (!found) {
     clickedElement.parentElement.parentElement.addEventListener('mouseleave', function (e) {
-      listenerAdded = true
       var styleTwo = window.getComputedStyle(clickedElement)
       setTimeout(function () {
         if (styleTwo.visibility == 'hidden') {
-          listenerAdded = false
           alert('run your callback')
         }
       }, 1000)
